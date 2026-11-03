@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Oxanium:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Oxanium", "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Share Tech Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-cyber: "Oxanium", "JetBrains Mono", monospace;
+}
+
+/* Enable class-based manual dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
+
+/* Smooth Scrolling & Custom Selection */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+::selection {
+  background-color: rgba(0, 255, 102, 0.3);
+  color: #00ff66;
+}
+
+.dark ::selection {
+  background-color: rgba(0, 255, 102, 0.35);
+  color: #a7f3d0;
+}
+
+/* Matrix Phosphor & Cyber Green Themes */
+:root {
+  --matrix-green: #00ff66;
+  --matrix-glow: rgba(0, 255, 102, 0.4);
+  --matrix-dim: #059669;
+  --matrix-bg-dark: #020403;
+  --matrix-surface-dark: #060d08;
+  --matrix-border-dark: rgba(0, 255, 102, 0.15);
+}
+
+/* Scanlines background pattern */
+.matrix-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+}
+
+/* CRT monitor subtle curvature vignette */
+.matrix-crt-vignette {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 255, 102, 0.1);
+  pointer-events: none;
+}
+
+/* Glow Utilities */
+.text-glow-matrix {
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.6), 0 0 20px rgba(0, 255, 102, 0.3);
+}
+
+.box-glow-matrix {
+  box-shadow: 0 0 20px -5px rgba(0, 255, 102, 0.25), inset 0 0 15px -5px rgba(0, 255, 102, 0.1);
+}
+
+.border-matrix-active {
+  border-color: rgba(0, 255, 102, 0.6);
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+}
+
+/* Glitch Slicing Animations */
+@keyframes matrix-glitch-1 {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.3deg);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: skew(-0.5deg);
+  }
+  40% {
+    clip-path: inset(10% 0 85% 0);
+    transform: skew(0.8deg);
+  }
+  60% {
+    clip-path: inset(70% 0 15% 0);
+    transform: skew(-0.3deg);
+  }
+  80% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(0.4deg);
+  }
+  100% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.3deg);
+  }
+}
+
+@keyframes matrix-glitch-2 {
+  0% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(-0.6deg);
+  }
+  25% {
+    clip-path: inset(54% 0 7% 0);
+    transform: skew(0.4deg);
+  }
+  50% {
+    clip-path: inset(15% 0 75% 0);
+    transform: skew(-0.8deg);
+  }
+  75% {
+    clip-path: inset(88% 0 5% 0);
+    transform: skew(0.6deg);
+  }
+  100% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(-0.6deg);
+  }
+}
+
+@keyframes pixel-jitter {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-pixel-jitter {
+  animation: pixel-jitter 0.15s infinite;
+}
+
+@keyframes laser-sweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+.animate-laser-sweep {
+  animation: laser-sweep 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* RGB Chromatic Split Keyframes */
+@keyframes rgb-chromatic-jitter {
+  0% {
+    text-shadow: -2.5px 0 0 #00f3ff, 2.5px 0 0 #ff0055, 0 0 12px rgba(0, 255, 102, 0.6);
+    transform: translate(-1px, 0);
+  }
+  20% {
+    text-shadow: 2.5px -0.5px 0 #00f3ff, -2.5px 0.5px 0 #ff0055, 0 0 10px rgba(0, 255, 102, 0.5);
+    transform: translate(1px, -0.5px);
+  }
+  40% {
+    text-shadow: -1.5px 0.5px 0 #00f3ff, 1.5px -0.5px 0 #ff0055, 0 0 8px rgba(0, 255, 102, 0.4);
+    transform: translate(-0.5px, 0.5px);
+  }
+  60% {
+    text-shadow: 1px 0 0 #00f3ff, -1px 0 0 #ff0055, 0 0 6px rgba(0, 255, 102, 0.3);
+    transform: translate(0.5px, 0);
+  }
+  80% {
+    text-shadow: -0.5px 0 0 #00f3ff, 0.5px 0 0 #ff0055;
+    transform: translate(0, 0);
+  }
+  100% {
+    text-shadow: 0 0 0 transparent;
+    transform: translate(0, 0);
+  }
+}
+
+.rgb-glitch-active {
+  animation: rgb-chromatic-jitter 0.5s ease-in-out infinite;
+}
+
+/* Glassy Matrix Panels & Rich Obsidian Surfaces */
+.matrix-panel {
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.dark .matrix-panel {
+  background: linear-gradient(180deg, rgba(8, 20, 12, 0.92) 0%, rgba(4, 12, 7, 0.95) 50%, rgba(2, 6, 3, 0.98) 100%);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(0, 255, 102, 0.35);
+  border-left: 1px solid rgba(0, 255, 102, 0.18);
+  border-right: 1px solid rgba(0, 243, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 255, 102, 0.18);
+  box-shadow: inset 0 1px 0 0 rgba(0, 255, 102, 0.25), 0 8px 32px -8px rgba(0, 0, 0, 0.7);
+}
+
+.dark .matrix-panel-hover:hover {
+  border-top-color: rgba(0, 255, 102, 0.7);
+  border-right-color: rgba(0, 243, 255, 0.5);
+  border-left-color: rgba(0, 255, 102, 0.4);
+  box-shadow: inset 0 1px 0 0 rgba(0, 255, 102, 0.4), 0 0 25px -4px rgba(0, 255, 102, 0.25), 0 0 15px -4px rgba(0, 243, 255, 0.15);
+}
+
+/* Multi-Tone Cyan and Emerald Glow Helpers */
+.glow-cyan-emerald {
+  box-shadow: 0 0 20px -5px rgba(0, 255, 102, 0.3), 0 0 15px -5px rgba(0, 243, 255, 0.2);
+}
+
+/* Styled Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #020403;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #059669;
+  border-radius: 2px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 102, 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff66;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 102, 0.7);
+}
